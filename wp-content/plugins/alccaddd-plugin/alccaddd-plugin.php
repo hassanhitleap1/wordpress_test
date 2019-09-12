@@ -32,12 +32,16 @@ class AleccadPlugin{
          add_action( "wp_enqueue_scripts",[$this,'enqueue_wp'] );
     }
     function active(){
-        $this->codex_custom_init();
-        flush_rewrite_rules();
+        require_once plugin_dir_path( __FILE__ ).'inc/alccaddd-plugin-activate.php';
+        AlccadddPlginActivate::activate();
+        // $this->codex_custom_init();
+        // flush_rewrite_rules();
     }
     
     function disactive(){
-        flush_rewrite_rules();
+        require_once plugin_dir_path( __FILE__ ).'inc/alccaddd-plugin-desactivate.php';
+        AlccadddPlginDesActivate::desactivate();
+        // flush_rewrite_rules();
     }
 
     function codex_custom_init(){
@@ -66,7 +70,7 @@ class AleccadPlugin{
 
 $aleccadd= new AleccadPlugin();
  
-$aleccadd->register();
+// $aleccadd->register();
 
 register_activation_hook( __FILE__,[$aleccadd,'active']);
 

@@ -27,8 +27,12 @@ class AleccadPlugin{
         add_action( 'init', [$this,'codex_custom_init'] );
     }
 
+    function register(){
+         add_action( "admin_enqueue_scripts",[$this,'enqueue_admin'] );
+         add_action( "wp_enqueue_scripts",[$this,'enqueue_wp'] );
+    }
     function active(){
-        $this->custm_post_type();
+        $this->codex_custom_init();
         flush_rewrite_rules();
     }
     
@@ -36,7 +40,7 @@ class AleccadPlugin{
         flush_rewrite_rules();
     }
 
-    function custm_post_type(){
+    function codex_custom_init(){
         
           $args = array(
             'public' => true,
@@ -45,6 +49,16 @@ class AleccadPlugin{
           
         register_post_type( 'book', $args );
     }
+
+    function enqueue_admin(){
+        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
+        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+    }
+
+    function enqueue_wp(){
+        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
+        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+    }
 }
 
 
@@ -52,18 +66,11 @@ class AleccadPlugin{
 
 $aleccadd= new AleccadPlugin();
  
+$aleccadd->register();
 
-// function codex_custom_init() {
-//     $args = array(
-//       'public' => true,
-//       'label'  => 'Books'
-//     );
-//     register_post_type( 'book', $args );
-// }
-//
+register_activation_hook( __FILE__,[$aleccadd,'active']);
+
+register_deactivation_hook( __FILE__,[$aleccadd,'disactive']);
 
 
 
-// register_activation_hook( __FILE__,[$aleccadd,'active']);
-
-// register_deactivation_hook( __FILE__,[$aleccadd,'disactive']);

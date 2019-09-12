@@ -23,13 +23,34 @@ if(!defined('ABSPATH')){
 
 class AleccadPlugin{
 
+    public $plugin;
     function __construct(){
-        add_action( 'init', [$this,'codex_custom_init'] );
+        // add_action( 'init', [$this,'codex_custom_init'] );
+        $this->public=plugin_basename(__FILE__);
     }
 
     function register(){
+        
          add_action( "admin_enqueue_scripts",[$this,'enqueue_admin'] );
          add_action( "wp_enqueue_scripts",[$this,'enqueue_wp'] );
+         add_action( 'admin_menu',[$this,'add_admin_pages']);
+         add_filter( 'plugin_action_link', [$this,'settings_link']);
+    }
+
+    public function settings_link($links){
+
+    }
+ 
+    public function add_admin_pages()
+    {
+        add_menu_page( 'ALICADDDPLGIN', 'Alicadd', 'manage_options', 'alicaddd_plugin', [$this,'admin_index'], 'dashicons-image-filter' ,  null );
+
+    }
+
+    public function admin_index(){
+   
+        require_once plugin_dir_path( __FILE__ ).'template/admin.php';
+
     }
     function active(){
         require_once plugin_dir_path( __FILE__ ).'inc/alccaddd-plugin-activate.php';
@@ -70,7 +91,7 @@ class AleccadPlugin{
 
 $aleccadd= new AleccadPlugin();
  
-// $aleccadd->register();
+ $aleccadd->register();
 
 register_activation_hook( __FILE__,[$aleccadd,'active']);
 

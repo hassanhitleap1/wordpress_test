@@ -24,13 +24,11 @@ if(!defined('ABSPATH')){
 class AleccadPlugin{
 
     function __construct(){
-        flush_rewrite_rules();
-        add_action( 'init',[$this,'custm_post_type'] );
-        
+        add_action( 'init', [$this,'codex_custom_init'] );
     }
 
     function active(){
-       
+        $this->custm_post_type();
         flush_rewrite_rules();
     }
     
@@ -39,15 +37,33 @@ class AleccadPlugin{
     }
 
     function custm_post_type(){
-        register_post_type( 'book', ['public' => 'true'] );
+        
+          $args = array(
+            'public' => true,
+            'label'  => 'Books'
+            );
+          
+        register_post_type( 'book', $args );
     }
 }
 
 
-if(class_exists('AleccadPlugin')){
-    $aleccadd= new AleccadPlugin();
-}
 
-register_activation_hook( __FILE__,[$aleccadd,'active']);
 
-register_deactivation_hook( __FILE__,[$aleccadd,'disactive']);
+$aleccadd= new AleccadPlugin();
+ 
+
+// function codex_custom_init() {
+//     $args = array(
+//       'public' => true,
+//       'label'  => 'Books'
+//     );
+//     register_post_type( 'book', $args );
+// }
+//
+
+
+
+// register_activation_hook( __FILE__,[$aleccadd,'active']);
+
+// register_deactivation_hook( __FILE__,[$aleccadd,'disactive']);

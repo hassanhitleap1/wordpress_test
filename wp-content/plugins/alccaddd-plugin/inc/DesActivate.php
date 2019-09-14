@@ -4,9 +4,10 @@
  * @package AlccadddPlgin 
  */
 
+namespace Inc;
 
 
-class AlccadddPlginDesActivate{
+class DesActivate{
 
 
     public static  function desactivate()

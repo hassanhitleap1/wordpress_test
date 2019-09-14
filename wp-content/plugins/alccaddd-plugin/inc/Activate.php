@@ -3,10 +3,10 @@
 /**
  * @package AlccadddPlgin 
  */
+namespace Inc;
 
 
-
-class AlccadddPlginActivate{
+class Activate{
 
 
     public static  function activate()

@@ -17,6 +17,12 @@
  */
 defined('ABSPATH') or die('cont access');
 
+if(file_exists(dirname(__FILE__).'/vendor/autoload.php')){
+    require_once  dirname(__FILE__).'/vendor/autoload.php';
+}
+use Inc\Activate;
+use Inc\DesActivate;
+
 if(!defined('ABSPATH')){
     die('cont access'); 
 }
@@ -57,14 +63,14 @@ class AleccadPlugin{
 
     }
     function active(){
-        require_once plugin_dir_path( __FILE__ ).'inc/alccaddd-plugin-activate.php';
+        
         AlccadddPlginActivate::activate();
         // $this->codex_custom_init();
         // flush_rewrite_rules();
     }
     
     function disactive(){
-        require_once plugin_dir_path( __FILE__ ).'inc/alccaddd-plugin-desactivate.php';
+       
         AlccadddPlginDesActivate::desactivate();
         // flush_rewrite_rules();
     }

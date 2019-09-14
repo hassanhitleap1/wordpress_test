@@ -1,0 +1,17 @@
+{
+    "name": "hassanki/alccaddd-plugin",
+    "description": "dshd odsjo",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "hassanhitleap1",
+            "email": "hassanhitleap1@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\":"./inc"}
+    }
+}

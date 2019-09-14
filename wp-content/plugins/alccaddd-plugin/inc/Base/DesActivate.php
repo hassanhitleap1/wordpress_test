@@ -4,7 +4,7 @@
  * @package AlccadddPlgin 
  */
 
-namespace Inc;
+namespace Inc\Base;
 
 
 class DesActivate{

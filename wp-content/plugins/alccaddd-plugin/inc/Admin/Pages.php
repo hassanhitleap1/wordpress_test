@@ -7,7 +7,7 @@
  namespace  Inc\Admin;
 
 
- class AdminPages 
+ class Pages 
  {
     function __construct()
     {

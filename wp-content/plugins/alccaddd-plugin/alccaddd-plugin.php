@@ -20,88 +20,95 @@ defined('ABSPATH') or die('cont access');
 if(file_exists(dirname(__FILE__).'/vendor/autoload.php')){
     require_once  dirname(__FILE__).'/vendor/autoload.php';
 }
-use Inc\Activate;
-use Inc\DesActivate;
 
-if(!defined('ABSPATH')){
-    die('cont access'); 
+define('PLUGIN_PATH',plugin_dir_path( __FILE__ ));
+define('PLUGIN_URL',plugin_dir_url( __FILE__ ));
+
+if(class_exists('Inc\\Init')){
+    Inc\Init::register_servies();
 }
 
-class AleccadPlugin{
 
-    public $plugin;
-    function __construct(){
-        // add_action( 'init', [$this,'codex_custom_init'] );
-        $this->plugin=plugin_basename(__FILE__);
+// use Inc\Activate;
+// use Inc\DesActivate;
+
+
+
+// class AleccadPlugin{
+
+//     public $plugin;
+//     function __construct(){
+//         // add_action( 'init', [$this,'codex_custom_init'] );
+//         $this->plugin=plugin_basename(__FILE__);
        
-    }
+//     }
 
-    function register(){
+//     function register(){
         
-         add_action( "admin_enqueue_scripts",[$this,'enqueue_admin'] );
-         add_action( "wp_enqueue_scripts",[$this,'enqueue_wp'] );
-         add_action( 'admin_menu',[$this,'add_admin_pages']);
+//          add_action( "admin_enqueue_scripts",[$this,'enqueue_admin'] );
+//          add_action( "wp_enqueue_scripts",[$this,'enqueue_wp'] );
+//          add_action( 'admin_menu',[$this,'add_admin_pages']);
 
-         add_filter( "plugin_action_links_". $this->plugin, [$this, 'settings_link']);
-    }
+//          add_filter( "plugin_action_links_". $this->plugin, [$this, 'settings_link']);
+//     }
 
-    public function settings_link($links){
-        $settings_link= '<a href="admin.php?page=alicaddd_plugin">setteing</a>';
-        array_push($links,$settings_link);
-        return $links;
-    }
+//     public function settings_link($links){
+//         $settings_link= '<a href="admin.php?page=alicaddd_plugin">setteing</a>';
+//         array_push($links,$settings_link);
+//         return $links;
+//     }
  
-    public function add_admin_pages()
-    {
-        add_menu_page( 'ALICADDDPLGIN', 'Alicadd', 'manage_options', 'alicaddd_plugin', [$this,'admin_index'], 'dashicons-image-filter' ,  null );
+//     public function add_admin_pages()
+//     {
+//         add_menu_page( 'ALICADDDPLGIN', 'Alicadd', 'manage_options', 'alicaddd_plugin', [$this,'admin_index'], 'dashicons-image-filter' ,  null );
 
-    }
+//     }
 
-    public function admin_index(){
+//     public function admin_index(){
    
-        require_once plugin_dir_path( __FILE__ ).'template/admin.php';
+//         require_once plugin_dir_path( __FILE__ ).'template/admin.php';
 
-    }
-    function active(){
+//     }
+//     function active(){
         
-        AlccadddPlginActivate::activate();
-        // $this->codex_custom_init();
-        // flush_rewrite_rules();
-    }
+//         AlccadddPlginActivate::activate();
+//         // $this->codex_custom_init();
+//         // flush_rewrite_rules();
+//     }
     
-    function disactive(){
+//     function disactive(){
        
-        AlccadddPlginDesActivate::desactivate();
-        // flush_rewrite_rules();
-    }
+//         AlccadddPlginDesActivate::desactivate();
+//         // flush_rewrite_rules();
+//     }
 
-    function codex_custom_init(){
+//     function codex_custom_init(){
         
-          $args = array(
-            'public' => true,
-            'label'  => 'Books'
-            );
+//           $args = array(
+//             'public' => true,
+//             'label'  => 'Books'
+//             );
           
-        register_post_type( 'book', $args );
-    }
+//         register_post_type( 'book', $args );
+//     }
 
-    function enqueue_admin(){
-        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
-        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
-    }
+//     function enqueue_admin(){
+//         wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
+//         wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+//     }
 
-    function enqueue_wp(){
-        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
-        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
-    }
-}
-
-
+//     function enqueue_wp(){
+//         wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
+//         wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+//     }
+// }
 
 
-$aleccadd= new AleccadPlugin();
+
+
+// $aleccadd= new AleccadPlugin();
  
- $aleccadd->register();
+//  $aleccadd->register();
 
 // register_activation_hook( __FILE__,[$aleccadd,'active']);
 

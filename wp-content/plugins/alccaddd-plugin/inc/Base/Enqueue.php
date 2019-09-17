@@ -16,14 +16,14 @@ class Enqueue{
     }
 
 
-    function enqueue_admin(){
-        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js' );
-        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+    public  function enqueue_admin(){
+        wp_enqueue_script( 'myscript', PLUGIN_URL. 'assets/js/myscript.js' );
+        wp_enqueue_style( 'mystyle', PLUGIN_URL.'assets/css/mystyle.js' ) ;
     }
 
-    function enqueue_wp(){
-        wp_enqueue_script( 'myscript', plugins_url( 'assets/js/myscript.js', __FILE__ ) );
-        wp_enqueue_style( 'mystyle', plugins_url( 'assets/css/mystyle.js', __FILE__ ) );
+    public function enqueue_wp(){
+        wp_enqueue_script( 'myscript', PLUGIN_URL .'assets/js/myscript.js' );
+        wp_enqueue_style( 'mystyle', PLUGIN_URL. 'assets/css/mystyle.js' );
     }
 
 }

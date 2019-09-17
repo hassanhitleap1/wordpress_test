@@ -2,17 +2,32 @@
 
 namespace Inc;
 
+
+
 final class Init {
 
-    public function get_servies()
+    /**
+     * @do utuean classes
+     * @param none
+     * @return class of servies
+     */
+    public static function get_servies()
     {
+      
         return [
-            Inc\Pages\Admin::class,
+            Pages\Admin::class,
+            Base\Enqueue::class,
         ];
     }
 
 
+    /**
+     * @do rgesist the servies 
+     * @param none
+     * @return no return
+     */
     public static function  register_servies(){
+      
         foreach (Self::get_servies() as $class) {
             $servie= Self::inistince($class);
             if(method_exists($servie,'register')){
@@ -22,7 +37,11 @@ final class Init {
    
     }
 
-
+    /**
+     * @do inclizese class  
+     * @param nam class 
+     * @return no initance from class 
+     */
     private static function inistince($class){
         $servie = new $class;
         return $servie;

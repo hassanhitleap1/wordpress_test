@@ -9,7 +9,7 @@ namespace Inc\Base;
 class Activate{
 
 
-    public static  function activate()
+    public static  function register()
     {
         self::codex_custom_init();
         flush_rewrite_rules();

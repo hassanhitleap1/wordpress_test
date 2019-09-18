@@ -10,7 +10,7 @@ namespace Inc\Base;
 class DesActivate{
 
 
-    public static  function register()
+    public static  function deactivate()
     {
         flush_rewrite_rules();
     }

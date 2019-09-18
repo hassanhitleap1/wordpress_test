@@ -21,12 +21,36 @@ if(file_exists(dirname(__FILE__).'/vendor/autoload.php')){
     require_once  dirname(__FILE__).'/vendor/autoload.php';
 }
 
+use Inc\Base\Activate;
+use Inc\Base\DesActivate;
+
 define('PLUGIN_PATH',plugin_dir_path( __FILE__ ));
 define('PLUGIN_URL',plugin_dir_url( __FILE__ ));
+define('PLUGIN',plugin_basename(__FILE__));
+
 
 if(class_exists('Inc\\Init')){
     Inc\Init::register_servies();
 }
+
+
+
+function active_alccaddd_plugin()
+{
+    Activate::activate();
+}
+
+function deactive_alccaddd_plugin()
+{
+    DesActivate::deactivate(); 
+}
+
+register_activation_hook( __FILE__,'active_alccaddd_plugin');
+
+register_deactivation_hook( __FILE__,'deactive_alccaddd_plugin');
+
+
+
 
 
 // use Inc\Activate;

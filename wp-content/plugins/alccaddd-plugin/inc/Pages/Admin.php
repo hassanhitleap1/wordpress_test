@@ -7,6 +7,7 @@
  namespace  Inc\Pages;
 
 use Inc\Base\BaseController;
+use \Inc\Api\ApiSettings;
 
  class Admin  extends BaseController
  {

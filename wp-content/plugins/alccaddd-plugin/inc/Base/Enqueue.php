@@ -5,8 +5,9 @@
  */
 namespace Inc\Base;
 
+use Inc\Base\BaseControllerl;
 
-class Enqueue{
+class Enqueue extends BaseController{
 
 
     public  function register()
@@ -17,13 +18,13 @@ class Enqueue{
 
 
     public  function enqueue_admin(){
-        wp_enqueue_script( 'myscript', PLUGIN_URL. 'assets/js/myscript.js' );
-        wp_enqueue_style( 'mystyle', PLUGIN_URL.'assets/css/mystyle.js' ) ;
+        wp_enqueue_script( 'myscript', $this->plugin_url. 'assets/js/myscript.js' );
+        wp_enqueue_style( 'mystyle', $this->plugin_url.'assets/css/mystyle.js' ) ;
     }
 
     public function enqueue_wp(){
-        wp_enqueue_script( 'myscript', PLUGIN_URL .'assets/js/myscript.js' );
-        wp_enqueue_style( 'mystyle', PLUGIN_URL. 'assets/css/mystyle.js' );
+        wp_enqueue_script( 'myscript', $this->plugin_url .'assets/js/myscript.js' );
+        wp_enqueue_style( 'mystyle', $this->plugin_url. 'assets/css/mystyle.js' );
     }
 
 }

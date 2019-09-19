@@ -9,7 +9,14 @@ namespace Inc\Api;
 class ApiSettings{
 
     public $admin_pages=array();
+
     public $admin_subpages=array();
+
+    public $settings=array();
+
+    public $sections=array();
+
+    public $fileds=array();
 
 
     public  function register()
@@ -58,6 +65,29 @@ class ApiSettings{
         return $this;
     }
 
+
+    public function setSettings(array $settings){
+        $this->settings=$settings;
+        return $this;
+    }
+
+
+    public function setSsections(array $sections){
+        $this->sections=$sections;
+        return $this;
+    }
+
+
+    public function setFileds(array $fileds){
+        $this->fileds=$fileds;
+        return $this;
+    }
+
+
+
+
+
+
     public function addAdminMenu(){
 
         foreach ($this->admin_pages as $page) {
@@ -89,6 +119,32 @@ class ApiSettings{
         }
 
     }
+
+
+
+
+    public  function  registerCustumFields(){
+        //  register setting
+
+        foreach ($this->settings as $setting) {
+            register_setting( $setting["option_group"],$setting["option_name"], isset($setting["callback"])?isset($setting["callback"]):"" ); 
+        }
+
+        //  add  setting session
+        foreach ($this->sessions as $session) {
+          add_settings_section( $session["id"], $session["title"],isset($session["callback"])?isset($session["callback"]):"", $session["page"] );
+        } 
+        // add setting  field
+        foreach ($this->fields as $field) {
+            add_settings_field( $field["id"], 
+                        $field["title"], isset($field["callback"])?isset($field["callback"]):"",
+                         $field["page"],
+                        $field["section"],
+                        $field["args"], isset($field["args"])?isset($field["args"]):"");
+
+        }                 
+    }
+
 
 }
 ?>

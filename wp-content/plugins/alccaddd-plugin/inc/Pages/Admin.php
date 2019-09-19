@@ -14,7 +14,7 @@ use \Inc\Api\ApiSettings;
 
    public $settings;
    public $pages;
-
+   public $subpages;
    /**
     * 
     */
@@ -41,6 +41,28 @@ use \Inc\Api\ApiSettings;
              'position'=>110
           ]
       ];
+
+      $this->subpages=[
+         [
+            "parent_slug"=>$this->pages[0]["menu_slug"],
+           'page_title'=>"ALICADDDPLGIN",
+            'menu_title'=>"sub_1_Alicadd2", 
+            'capability'=>"manage_options",
+            'menu_slug'=>"alicaddd_plugin_sub1", 
+            'callable'=> function(){echo "sss";},
+            
+         ],
+         [
+            "parent_slug"=>$this->pages[0]["menu_slug"],
+            'page_title'=>"ALICADDDPLGIN2",
+             'menu_title'=>"sub_2_Alicadd2", 
+             'capability'=>"manage_options",
+             'menu_slug'=>"alicaddd_plugin_sub2", 
+             'callable'=> function(){echo "sss";},
+            
+          ]
+      ];
+
    }
    
 
@@ -48,8 +70,9 @@ use \Inc\Api\ApiSettings;
    {
 
       //add_action( 'admin_menu',[$this,'add_admin_pages']);
+      //
      
-     $this->settings->addPages($this->pages)->register();
+     $this->settings->addPages($this->pages)->withSubPage("dashbord")->subMenuPages($this->subpages)->register();
    }
 
 

@@ -14,7 +14,7 @@ class ApiSettings{
     public  function register()
     {
         if(!empty($this->admin_pages)){
-            add_action( "admin_menu", [$this,'addAdminMenu']);
+            add_action( 'admin_menu',[$this,'addAdminMenu']);
         }
     }
 
@@ -28,16 +28,20 @@ class ApiSettings{
 
 
     public function addAdminMenu(){
-        foreach ($pages as $page) {
+
+        foreach ($this->admin_pages as $page) {
+
             add_menu_page(
-                 $page['page_title'],
+                $page['page_title'],     
                 $page['menu_title'], 
                 $page['capability'],
                 $page['menu_slug'] , 
-                $page['menu_title'],
+                $page['callable'] , 
                 $page['icon_url'] , 
-                $page['position']
+                $page['position'],
+                null
             );
+
         }
     }
 
